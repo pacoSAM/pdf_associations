@@ -17,7 +17,7 @@ class MyPdfWidget(BoxLayout):
         self.popwindow = ""
 
     def open(self, path, filename):
-        """open button"""
+        """Combin in One file button"""
         self.filename = filename
         if len(self.filename) > 0:
             if check_format(self.filename) == False:
