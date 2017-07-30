@@ -1,0 +1,17 @@
+<MyPdfWidget>:
+    id: my_widget
+    GridLayout:
+        row:2
+        cols:1
+        Button
+            text: "Combin in One file"
+            on_release: my_widget.open(filechooser.path, filechooser.selection)
+        Button
+            text:"Convert Image in PDF"
+            on_release: my_widget.image_to_pdf(filechooser.path,filechooser.selection)
+
+    FileChooserIconView:
+        id: filechooser
+        path: "."
+        multiselect: True
+        on_selection: my_widget.selected(filechooser.selection)
