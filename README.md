@@ -3,6 +3,14 @@ GUI with  KIVY
 
 A graphical interface that allows you to combine pdf to form a single pdf
 
-# Requirement
+# 1-Requirement
 
-	python
+## python 2.7
+
+## install kivy
+### confert https://kivy.org/docs/installation/installation.html
+
+# 2-Requierment for Unit test case
+
+## install PyPDF2
+###  pip install PyPDF2
