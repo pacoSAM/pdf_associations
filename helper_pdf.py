@@ -3,10 +3,10 @@ import Image
 
 
 def convert_image_to_pdf(image, extension):
-    """convert your image in your extension"""
+    """converts your image in your extension"""
     file = os.path.splitext(image)[0] + "." + str(extension)
-    outfile = verif_name(file, extension)
-    conver = ("convert " + "%s" + " %s") % (image, outfile)
+    outfile = increment_filename_ifexit(file, extension)
+    conver = ("convert %s %s") % (image, outfile)
     if os.system(conver) == 0:
         return outfile
     else:
@@ -14,20 +14,20 @@ def convert_image_to_pdf(image, extension):
 
 
 def check_format(file_list):
-    """Return True if files is pdf or image"""
+    """Returns True if files is pdf or image"""
     checker = True
     for file in file_list:
         if os.path.splitext(file)[1] != ".pdf":
             try:
                 Image.open(file)
             except IOError:
-                check = False
+                checker = False
                 break
     return checker
 
 
-def verif_name(filename, extension):
-    """increment filename: return new name if they is the same filename in your repository"""
+def increment_filename_ifexit(filename, extension):
+    """increments filename: return new name if there is the same filename in your repository"""
     i = 1
     while True:
         if os.path.exists(filename) == True:
@@ -45,7 +45,7 @@ def verif_name(filename, extension):
 def combine_in_one_pdf(list_pdf, output_file_name):
     """create new file that contain all pdfs"""
     outfile = os.path.splitext(output_file_name)[0] + ".pdf"
-    conver = ("convert " + " ".join(list_pdf) + outfile)
+    conver = ("convert " + " ".join(list_pdf) +" "+ outfile)
     if os.system(conver) == 0:
         return outfile
     else:
@@ -55,4 +55,4 @@ def combine_in_one_pdf(list_pdf, output_file_name):
 def get_all_file_type(extension, path):
     """ Returns a list of filenames for all jpg images in a directory. """
     form = "." + str(extension)
-    return [os.path.join(f) for f in os.listdir(path) if f.endswith(form)]
+    return [os.path.join(path, f) for f in os.listdir(path) if f.endswith(form)]
