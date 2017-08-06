@@ -15,7 +15,7 @@ def get_file_expected(filename):
 
     name_except = outfile + "(1)" + extension
 
-    if outfile[maxim] == ")":
+    if outfile[maxim] == "]":
         i = 1
         while True:
             try:
@@ -23,9 +23,9 @@ def get_file_expected(filename):
                 i += 1
             except Exception:
                 break
-        if outfile[maxim - i] == "(":
+        if outfile[maxim - i] == "[":
             n = int(outfile[maxim - i + 1:maxim])
-            name_except = outfile[:n - 1] + "(%s)%s" % (n + 1, extension)
+            name_except = outfile[:n - 1] + "[%s]%s" % (n + 1, extension)
 
     return name_except, extension
 
@@ -88,7 +88,7 @@ class HelperTest(unittest.TestCase):
             file_xtension, path)
         outfile = combine_in_one_pdf(self.files_to_combine, outfile)
         if outfile == False:
-            self.assertIsTrue(outfile)
+            self.assertTrue(outfile)
         if os.path.isfile(outfile) == True:
             self.assertRaises(utils.PdfReadError, verif_error_pdf(outfile))
 

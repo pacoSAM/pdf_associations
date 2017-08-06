@@ -32,7 +32,7 @@ def increment_filename_ifexit(filename, extension):
     while True:
         if os.path.exists(filename) == True:
             outfile = os.path.splitext(
-                filename)[0] + "(%s)." % i + str(extension)
+                filename)[0] + "[%s]." % i + str(extension)
             if os.path.exists(outfile) == False:
                 break
             i += 1
@@ -44,7 +44,9 @@ def increment_filename_ifexit(filename, extension):
 
 def combine_in_one_pdf(list_pdf, output_file_name):
     """create new file that contain all pdfs"""
+
     outfile = os.path.splitext(output_file_name)[0] + ".pdf"
+    outfile = increment_filename_ifexit(outfile, "pdf")
     conver = ("convert " + " ".join(list_pdf) +" "+ outfile)
     if os.system(conver) == 0:
         return outfile
@@ -53,6 +55,6 @@ def combine_in_one_pdf(list_pdf, output_file_name):
 
 
 def get_all_file_type(extension, path):
-    """ Returns a list of filenames for all jpg images in a directory. """
+    """ Returns a list of filenames for all files with the extension selected in a directory. """
     form = "." + str(extension)
     return [os.path.join(path, f) for f in os.listdir(path) if f.endswith(form)]
