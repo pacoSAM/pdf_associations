@@ -1,2 +1,4 @@
 path_test.py
-*.pyc 
+.cache/
+__pycache__/
+*.pyc
