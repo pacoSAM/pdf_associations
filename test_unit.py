@@ -4,6 +4,7 @@ from os import listdir, getcwd
 from PyPDF2 import PdfFileReader, utils
 from path_test import PATH_FOR_INCREMENT_NAME, CONVERT_PATH
 from helper_pdf import *
+from creat_repo import *
 
 
 def get_file_expected(filename):
@@ -55,6 +56,14 @@ class HelperTest(unittest.TestCase):
         self.file_to_test = ''
         self.images_to_test = []
         self.files_to_combine = []
+
+    def test_chek_existdir(self):
+        """Test:  test no mater what it'll create the directory "PDF_COMBINE" if this one didn't exist
+            Test pass if 
+         """
+        chek_existdir("PDF_COMBINE")
+        check_dir = os.path.isdir("PDF_COMBINE")
+        self.assertTrue(check_dir)
 
     def test_increment_filename_ifexit(self):
         """ test: to know if filename 'll be incremented if there are file which same name"""

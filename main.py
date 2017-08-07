@@ -5,6 +5,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from helper_pdf import *
 from helper_popup_window import *
+from creat_repo import *
 
 import os
 
@@ -67,4 +68,5 @@ class MyPdfApp(App):
         return MyPdfWidget()
 
 if __name__ == '__main__':
+    chek_existdir("PDF_COMBINE")
     MyPdfApp().run()

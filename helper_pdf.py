@@ -47,7 +47,7 @@ def combine_in_one_pdf(list_pdf, output_file_name):
 
     outfile = os.path.splitext(output_file_name)[0] + ".pdf"
     outfile = increment_filename_ifexit(outfile, "pdf")
-    conver = ("convert " + " ".join(list_pdf) +" "+ outfile)
+    conver = ("convert " + " ".join(list_pdf) + " " + outfile)
     if os.system(conver) == 0:
         return outfile
     else:
