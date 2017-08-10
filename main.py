@@ -45,6 +45,7 @@ class MyPdfWidget(BoxLayout):
             else:
                 for file in self.filename:
                     convert_image_to_pdf(file, "pdf")
+                ok_popup("file")
 
                 if len(os.listdir(os.getcwd())) > nfile_in_repo:
                     ok_popup("your file ")
@@ -69,4 +70,5 @@ class MyPdfApp(App):
 
 if __name__ == '__main__':
     chek_existdir("PDF_COMBINE")
+    # os.chdir(os.getcwd() + "/PDF_COMBINE")
     MyPdfApp().run()
